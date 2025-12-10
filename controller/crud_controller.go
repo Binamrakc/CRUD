@@ -61,3 +61,16 @@ func Update(c *gin.Context) {
 	}
 	c.Redirect(http.StatusSeeOther, "/view")
 }
+
+func Delete(c *gin.Context) {
+	id := c.Param("id")
+
+	delete := intializer.DB.Delete(&intializer.User{}, id)
+
+	if delete.Error != nil {
+		c.String(http.StatusInternalServerError, "unable to delete data")
+		return
+	}
+	c.Redirect(http.StatusSeeOther, "/view")
+
+}

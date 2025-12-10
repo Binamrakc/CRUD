@@ -1,15 +1,15 @@
 package intializer
 
 import (
+	"log"
 	"net/http"
 
-	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 )
 
-func Loadenv(c *gin.Context) {
+func Loadenv() {
 	err := godotenv.Load()
 	if err != nil {
-		c.String(http.StatusInternalServerError, "database not connected")
+		log.Println(http.StatusInternalServerError, "database not connected")
 	}
 }

@@ -11,6 +11,7 @@ import (
 func main() {
 	r := gin.Default()
 	r.Use(gin.Logger())
+	intializer.Loadenv()
 	intializer.ConnectDB()
 	intializer.DBmigrate()
 	r.LoadHTMLGlob("templates/*")
@@ -22,7 +23,10 @@ func main() {
 	})
 	r.POST("/submit", controller.Submit)
 	r.GET("/view", controller.View)
+
 	r.GET("/update/:id", controller.Take)
 	r.POST("/update/:id", controller.Update)
+
+	r.POST("/delete/:id", controller.Delete)
 	r.Run()
 }

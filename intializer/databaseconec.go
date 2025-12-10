@@ -17,10 +17,10 @@ type User struct {
 var DB *gorm.DB
 
 func ConnectDB() {
-	dsn := os.Getenv("dsn")
+	dsn := os.Getenv("DSN")
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
-		log.Println("database connection failed ", err)
+		log.Fatal("database connection failed ", err)
 	}
 	DB = db
 
