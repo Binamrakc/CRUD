@@ -2,6 +2,7 @@ package controller
 
 import (
 	"crud/intializer"
+
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -73,4 +74,28 @@ func Delete(c *gin.Context) {
 	}
 	c.Redirect(http.StatusSeeOther, "/view")
 
+}
+func Register(c *gin.Context) {
+	gmail := c.PostForm("gmail")
+	Password := c.PostForm("password")
+
+	Auth := intializer.Auth{
+		Gmail:    gmail,
+		Password: Password,
+	}
+	result := intializer.DB.Create(&Auth)
+
+	if result.Error != nil {
+		c.String(500, "error saving user")
+		return
+	}
+	c.Redirect(302, "/auth")
+
+}
+func Showregister(c *gin.Context) {
+	c.HTML(200, "login.html ", nil)
+
+}
+func Showauth(c *gin.Context) {
+	c.HTML(200, "auth.html", nil)
 }

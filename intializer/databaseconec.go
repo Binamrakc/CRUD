@@ -13,6 +13,10 @@ type User struct {
 	UserName string `gorm:"size:255"`
 	Email    string `gorm:"size:255"`
 }
+type Auth struct {
+	Gmail    string `gorm:"size:60"`
+	Password string `gorm:"size:60"`
+}
 
 var DB *gorm.DB
 

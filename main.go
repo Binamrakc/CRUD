@@ -21,6 +21,7 @@ func main() {
 			"title": "userlogin",
 		})
 	})
+
 	r.POST("/submit", controller.Submit)
 	r.GET("/view", controller.View)
 
@@ -28,5 +29,9 @@ func main() {
 	r.POST("/update/:id", controller.Update)
 
 	r.POST("/delete/:id", controller.Delete)
+	r.GET("/register", controller.Showregister)
+	r.POST("/register", controller.Register)
+
+	r.GET("/auth", controller.Showauth)
 	r.Run()
 }
